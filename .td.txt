@@ -1,0 +1,5 @@
+1. Fix bugs:
+	a) when I draw a grid and after that, I also draw a grid, the whole main square become painted
+	b) when I open inspect (or for example scrolling), checker of mouse position work wrong
+
+2. Connect view (and server) and Neural Network:

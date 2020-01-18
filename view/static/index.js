@@ -30,6 +30,27 @@ setInterval(()=> {
 }, 100);
 
 
+const inputName = document.querySelector('.inputObj');
+const btnSend = document.querySelector('.sendObj');
+
+let whatSend = '';
+let glGrid = [];
+
+
+btnSend.addEventListener('click', () => {
+	whatSend = inputName.value;
+
+	fetch("/api/grid", {
+	    headers: {
+	      'Accept': 'application/json',
+	      'Content-Type': 'application/json'
+	    },
+	    method: "POST",
+	    body: JSON.stringify({grid: glGrid, name: whatSend})
+	})
+})
+
+
 function drSpRect(x, y, w, h, rColor, bColor, thick) {
 	ctx.lineWidth = thick;
 	ctx.strokeStyle = bColor;
@@ -126,6 +147,8 @@ document.addEventListener('keydown', (e) => {
 		}
 
 		clearCanv();
+
+		
 
 		drTable(sqLen, vGrid);
 	}
