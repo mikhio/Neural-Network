@@ -2,11 +2,13 @@ from flask import Flask
 from flask import send_file, make_response, request
 import json
 
-app = Flask(__name__)
-
 def readFiles(path):
 	with open(path, 'r') as f:
 		return f.read()
+
+app = Flask(__name__)
+config = json.loads(readFiles('./config.json'))
+
 
 def checkExp(name):
 	exp = ''
@@ -18,6 +20,7 @@ def checkExp(name):
 
 		if l == '.':
 			isStartExp = True
+
 
 @app.route('/')
 def root():
@@ -33,12 +36,13 @@ def sendStatics(path):
 
 	return send_file(filepath)
 
-@app.route('/api/grid', methods='POST')
+@app.route('/api/grid', methods=['POST'])
 def grid():
-	dict = json.load(request.get_json())
+	dict = request.get_json()
+	return 'Status: 200'
 
 
 
 
 if __name__ == '__main__':
-	app.run()
+	app.run(host=config['host'], port=config['port'])

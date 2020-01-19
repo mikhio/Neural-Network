@@ -39,15 +39,18 @@ let glGrid = [];
 
 btnSend.addEventListener('click', () => {
 	whatSend = inputName.value;
-
-	fetch("/api/grid", {
-	    headers: {
-	      'Accept': 'application/json',
-	      'Content-Type': 'application/json'
-	    },
-	    method: "POST",
-	    body: JSON.stringify({grid: glGrid, name: whatSend})
-	})
+	if (glGrid.length !== 0) {
+		fetch("/api/grid", {
+		    headers: {
+		      'Accept': 'application/json',
+		      'Content-Type': 'application/json'
+		    },
+		    method: "POST",
+		    body: JSON.stringify({grid: glGrid, name: whatSend})
+		})
+	} else {
+		console.log('ERROR: You don\'t convert png to pixels! ')
+	}
 })
 
 
@@ -74,6 +77,8 @@ function drTable(sqLen, arr) {
 
 function clearCanv() {
 	ctx.clearRect(0, 0, 500, 500);
+
+	glGrid = []
 
 	console.clear();
 	console.log(`
@@ -148,7 +153,7 @@ document.addEventListener('keydown', (e) => {
 
 		clearCanv();
 
-		
+		glGrid = vGrid;		
 
 		drTable(sqLen, vGrid);
 	}
