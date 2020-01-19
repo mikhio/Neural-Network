@@ -6,11 +6,30 @@ body {
 	font-family: Roboto;
 }
 
+button {
+	transition: all 0.2s ease;
+	width: 200px;
+	height: 30px;
+
+	border: 1px solid #bbb;
+	border-radius: 5px;
+	outline: none;
+
+	font-size: 14px;
+}
+
+button:hover {
+	background-color: #338be6;
+	color: #fff;
+}
+
+
 #canvas {
 	background-color: #fff;
 	margin-top: 60px;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
 
 .inputWin {
 	display: flex;
@@ -28,7 +47,6 @@ body {
 .controlObj {
 	display: flex;
 	justify-content: center;
-	flex-wrap: wrap;
 }
 
 .inputObj {
@@ -42,26 +60,27 @@ body {
 	border: 1px solid #bbb;
 	border-radius: 5px;
 
-	font-size: 16px;
+	font-size: 16px;	
 }
+
 
 .sendObj {
-	transition: all 0.2s ease;
-	width: 200px;
-	height: 30px;
 	margin-top: 10px;
-
-	border: 1px solid #bbb;
-	border-radius: 5px;
-	outline: none;
-
-	font-size: 14px;
 	margin-bottom: 20px;
+	margin-left: 5px;
 }
 
-.sendObj:hover {
-	background-color: #338be6;
-	color: #fff;
+.trainNN {
+	margin-top: 10px;
+	margin-bottom: 20px;
+	margin-left: 5px;
+}
+
+.checkNN {
+	margin-top: 10px;
+	margin-bottom: 20px;
+	margin-left: 5px;
+	margin-right: 5px;
 }
 	
 .paintOp {

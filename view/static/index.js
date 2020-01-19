@@ -32,6 +32,8 @@ setInterval(()=> {
 
 const inputName = document.querySelector('.inputObj');
 const btnSend = document.querySelector('.sendObj');
+const btnTrain = document.querySelector('.trainNN');
+const btnCheck = document.querySelector('.checkNN');
 
 let whatSend = '';
 let glGrid = [];
@@ -47,9 +49,35 @@ btnSend.addEventListener('click', () => {
 		    },
 		    method: "POST",
 		    body: JSON.stringify({grid: glGrid, name: whatSend})
-		})
+		});
 	} else {
-		console.log('ERROR: You don\'t convert png to pixels! ')
+		console.log('ERROR: You don\'t convert png to pixels! ');
+	}
+})
+
+btnTrain.addEventListener('click', () => {
+	fetch("/api/signal", {
+	    headers: {
+	      'Accept': 'application/json',
+	      'Content-Type': 'application/json'
+	    },
+	    method: "POST",
+	    body: JSON.stringify({'do': 'train'})
+	});
+})
+
+btnCheck.addEventListener('click', () => {
+		if (glGrid.length !== 0) {
+			fetch("/api/signal", {
+		    headers: {
+		      'Accept': 'application/json',
+		      'Content-Type': 'application/json'
+		    },
+		    method: "POST",
+		    body: JSON.stringify({do: 'check', grid: glGrid})
+		});
+	} else {
+		console.log('ERROR: You don\'t convert png to pixels! ');
 	}
 })
 
@@ -78,7 +106,7 @@ function drTable(sqLen, arr) {
 function clearCanv() {
 	ctx.clearRect(0, 0, 500, 500);
 
-	glGrid = []
+	glGrid = [];
 
 	console.clear();
 	console.log(`

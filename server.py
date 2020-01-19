@@ -2,6 +2,7 @@ from flask import Flask
 from flask_pymongo import PyMongo
 from flask import send_file, make_response, request
 import json
+import os
 
 def readFiles(path):
 	with open(path, 'r') as f:
@@ -49,7 +50,20 @@ def grid():
 	return 'Status: 200'
 
 
+@app.route('/api/signal', methods=['POST'])
+def signal():
+	dict = request.get_json()
+	if dict['do'] == 'train':
+		pass
+	elif dict['do'] == 'check':
+		pass
+	return 'Status: 200'
+
+
 
 
 if __name__ == '__main__':
+	clear = lambda: os.system('clear')
+	clear()
+	
 	app.run(host=config['host'], port=config['port'])
